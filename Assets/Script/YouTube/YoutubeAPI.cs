@@ -6,6 +6,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
+using Unity.VisualScripting;
 
 public class YoutubeAPI : MonoBehaviour
 {
@@ -18,6 +19,14 @@ public class YoutubeAPI : MonoBehaviour
 
     private HashSet<string> viewedETags;
     public Queue<Tuple<string, string, string>> history;
+
+    public GameObject GameManger;
+    private WhoAmI _whoAmI;
+
+    void Awake()
+    {
+        _whoAmI = GameManger.GetComponent<WhoAmI>();
+    }
     IEnumerator Start()
     {
         StreamReader reader = new StreamReader("Assets/Resources/youtubeapikey.txt");
@@ -80,6 +89,9 @@ public class YoutubeAPI : MonoBehaviour
                                          snip["publishedAt"].ToString());
                         history.Enqueue(tuple);
                         viewedETags.Add(etag);
+                        _whoAmI.CheckQuess(author["displayName"].ToString(),
+                            snip["displayMessage"].ToString(),
+                            snip["publishedAt"].ToString());
                     }
                     // wait a little before next query.
                     // yield return new WaitForSeconds(json["pollingIntervalMillis"].AsFloat/1000);
