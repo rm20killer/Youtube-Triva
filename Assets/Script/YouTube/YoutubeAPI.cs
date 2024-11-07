@@ -18,7 +18,7 @@ public class YoutubeAPI : MonoBehaviour
     private string apiKey;
 
     private HashSet<string> viewedETags;
-    public Queue<Tuple<string, string, string>> history;
+    public Queue<Tuple<string, string, string, string>> history;
 
     public GameObject GameManger;
     private WhoAmI _whoAmI;
@@ -35,7 +35,7 @@ public class YoutubeAPI : MonoBehaviour
         if (videoId != "") // videoId must be provided at the beginning!!
         {
             viewedETags = new HashSet<string>();
-            history = new Queue<Tuple<string, string, string>>();
+            history = new Queue<Tuple<string, string, string, string>>();
             // get chatId from videoId
             var chatIDURL = $"{youtubeAPIURL}/videos?id={videoId}&key={apiKey}&part=liveStreamingDetails";
             var req = UnityWebRequest.Get(chatIDURL);
@@ -83,14 +83,16 @@ public class YoutubeAPI : MonoBehaviour
                         Debug.Log (author["displayName"].ToString() + 
                                     " : " + snip["displayMessage"].ToString());
 
-                        var tuple = new Tuple<string, string, string>
+                        var tuple = new Tuple<string, string,string, string>
                                         (author["displayName"].ToString(),
                                          snip["displayMessage"].ToString(),
+                                         author["profileImageUrl"].ToString(),
                                          snip["publishedAt"].ToString());
                         history.Enqueue(tuple);
                         viewedETags.Add(etag);
                         _whoAmI.CheckQuess(author["displayName"].ToString(),
                             snip["displayMessage"].ToString(),
+                            author["profileImageUrl"].ToString(),
                             snip["publishedAt"].ToString());
                     }
                     // wait a little before next query.
