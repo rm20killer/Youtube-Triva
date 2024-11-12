@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 39eda3dbf0eb6654c957f2ea667daf58
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Penumbra Serif Std
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 12498e40c42932c4f8024db6cb2fc889, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
