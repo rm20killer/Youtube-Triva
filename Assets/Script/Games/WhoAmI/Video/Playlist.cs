@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -11,6 +12,9 @@ public class Playlist : MonoBehaviour
 
     public VideoPlayer videoPlayer;
     private List<int> playedvideo = new List<int>();
+
+    public GameObject Leaderboard;
+    public GameObject VideoGameObject;
  
     private void Start()
     {
@@ -23,10 +27,28 @@ public class Playlist : MonoBehaviour
         //if the music stopped playing
         if(!videoPlayer.isPlaying)
         {
-
+            Leaderboard.SetActive(true);
+            VideoGameObject.SetActive(false);
+            whoAmI.StopGame();
         }
     }
 
+    public void PlayNextVideo()
+    {
+        if (PlayNext())
+        {
+            VideoGameObject.SetActive(true);
+            Leaderboard.SetActive(false);
+            whoAmI.StartGame(video[currentVideoIndex].rightAnswer, video[currentVideoIndex].MaxPoints,
+                video[currentVideoIndex].maxSeconds);
+        }
+        else
+        {
+            Leaderboard.SetActive(true);
+            VideoGameObject.SetActive(false);
+            whoAmI.StopGame();
+        }
+    }
     /// <summary>
     /// play next video
     /// </summary>

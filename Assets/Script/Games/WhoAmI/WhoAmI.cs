@@ -20,7 +20,7 @@ public class WhoAmI : MonoBehaviour
     
     private HashSet<string> _correctPlayers = new HashSet<string>(); // Keep track of players who already answered correctly
 
-    
+    [SerializeField] private YoutubeAPI YoutubeAPI;
     public bool testing = false;
 
     // private void Start()
@@ -37,8 +37,13 @@ public class WhoAmI : MonoBehaviour
         maxPoints = max;
         maxSeconds = secounds;
         _startTime = DateTime.UtcNow;
+        YoutubeAPI.isActive = true;
     }
 
+    public void StopGame()
+    {
+        YoutubeAPI.isActive = false;
+    }
     public bool CheckQuess(string author, string message, string ImageURL, string publishedAt)
     {
          string normalizedMessage = message.Trim('"');
