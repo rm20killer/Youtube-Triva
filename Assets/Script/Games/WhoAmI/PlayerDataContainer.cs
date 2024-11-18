@@ -23,7 +23,11 @@ public class PlayerDataContainer : MonoBehaviour
         saveFilePath = Application.persistentDataPath + "/playerData.json";
         LoadData();
     }
-    
+
+    public List<PlayerData> GetPlayerData()
+    {
+        return Data;
+    }
     public void LoadData()
     {
         // Check if the save file exists
@@ -63,6 +67,7 @@ public class PlayerDataContainer : MonoBehaviour
         // Delete the save file
         if (File.Exists(saveFilePath))
         {
+            
             File.Delete(saveFilePath);
             Debug.Log("Data deleted.");
         }

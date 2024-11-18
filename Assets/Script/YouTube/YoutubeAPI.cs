@@ -27,6 +27,17 @@ public class YoutubeAPI : MonoBehaviour
     {
         _whoAmI = GameManger.GetComponent<WhoAmI>();
     }
+
+    public void SetVideoId(string value)
+    {
+        videoId = value;
+    }
+    
+    public void SetApi(string value)
+    {
+        apiKey = value;
+    }
+    
     IEnumerator Start()
     {
         StreamReader reader = new StreamReader("Assets/Resources/youtubeapikey.txt");

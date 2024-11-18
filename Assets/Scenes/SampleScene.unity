@@ -1686,6 +1686,7 @@ GameObject:
   - component: {fileID: 570952406}
   - component: {fileID: 570952408}
   - component: {fileID: 570952409}
+  - component: {fileID: 570952410}
   m_Layer: 0
   m_Name: GameMananger
   m_TagString: Untagged
@@ -1709,7 +1710,7 @@ MonoBehaviour:
   maxPoints: 100
   maxSeconds: 120
   _playerDataContainer: {fileID: 570952408}
-  YoutubeAPI: {fileID: 0}
+  YoutubeAPI: {fileID: 882633735}
   testing: 1
 --- !u!4 &570952407
 Transform:
@@ -1756,8 +1757,41 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed9552322ac1f6a4b93abbbfdda98d93, type: 2}
   currentVideoIndex: 0
   videoPlayer: {fileID: 720503703}
-  Leaderboard: {fileID: 260713389}
-  VideoGameObject: {fileID: 1374495931}
+  Leaderboard: {fileID: 1374495931}
+  VideoGameObject: {fileID: 260713389}
+  Playing: 0
+--- !u!114 &570952410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570952405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c028c19fc9420234da77aca6e7f6069c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerDataContainer: {fileID: 570952408}
+  Top5: []
+  _names:
+  - {fileID: 1443233974}
+  - {fileID: 815662781}
+  - {fileID: 275542036}
+  - {fileID: 629053693}
+  - {fileID: 635742514}
+  _points:
+  - {fileID: 1959125792}
+  - {fileID: 481275551}
+  - {fileID: 1147997719}
+  - {fileID: 1792935718}
+  - {fileID: 1352432658}
+  _images:
+  - {fileID: 1101363066}
+  - {fileID: 395864986}
+  - {fileID: 177316382}
+  - {fileID: 380701882}
+  - {fileID: 1730109937}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,7 +2468,7 @@ VideoPlayer:
   m_RenderMode: 2
   m_AspectRatio: 2
   m_DataSource: 0
-  m_TimeUpdateMode: 2
+  m_TimeUpdateMode: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
@@ -3592,7 +3626,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882633735}
+        m_TargetAssemblyTypeName: YoutubeAPI, Assembly-CSharp
+        m_MethodName: SetVideoId
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -3610,19 +3656,7 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4196,7 +4230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1182619365
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5705,8 +5739,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -5718,7 +5752,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882633735}
+        m_TargetAssemblyTypeName: YoutubeAPI, Assembly-CSharp
+        m_MethodName: SetApi
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -5736,19 +5782,7 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []

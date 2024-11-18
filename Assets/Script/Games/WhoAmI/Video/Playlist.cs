@@ -15,24 +15,46 @@ public class Playlist : MonoBehaviour
 
     public GameObject Leaderboard;
     public GameObject VideoGameObject;
- 
+    public bool Playing = false;
     private void Start()
+    {
+        // StartFirstGame();
+    }
+
+    public void StartFirstGame()
     {
         videoPlayer.clip = video[currentVideoIndex].VideoClip;
         whoAmI.StartGame(video[currentVideoIndex].rightAnswer, video[currentVideoIndex].MaxPoints,
             video[currentVideoIndex].maxSeconds);
+        videoPlayer.Play();
+        Debug.Log((long)videoPlayer.clip.frameCount - 1);
     }
     private void Update()
     {
-        //if the music stopped playing
-        if(!videoPlayer.isPlaying)
+        if (!Playing) return;
+        //if the frame is the last frame of the video
+        if (videoPlayer.frame == (long)videoPlayer.clip.frameCount - 1)
         {
-            Leaderboard.SetActive(true);
-            VideoGameObject.SetActive(false);
-            whoAmI.StopGame();
+            Openleaderboard();
         }
+        // Debug.Log(videoPlayer.frame); 1515
+        
+        // if(!videoPlayer.isPlaying)
+        // {
+        //     Leaderboard.SetActive(true);
+        //     VideoGameObject.SetActive(false);
+        //     whoAmI.StopGame();
+        // }
+        
     }
 
+    private void Openleaderboard()
+    {
+        Leaderboard.SetActive(true);
+        VideoGameObject.SetActive(false);
+        whoAmI.StopGame();
+        Playing = false;
+    }
     public void PlayNextVideo()
     {
         if (PlayNext())
@@ -41,12 +63,15 @@ public class Playlist : MonoBehaviour
             Leaderboard.SetActive(false);
             whoAmI.StartGame(video[currentVideoIndex].rightAnswer, video[currentVideoIndex].MaxPoints,
                 video[currentVideoIndex].maxSeconds);
+            videoPlayer.Play();
+            Playing = true;
         }
         else
         {
             Leaderboard.SetActive(true);
             VideoGameObject.SetActive(false);
             whoAmI.StopGame();
+            Playing = false;
         }
     }
     /// <summary>
