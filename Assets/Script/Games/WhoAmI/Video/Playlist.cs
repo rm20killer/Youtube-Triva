@@ -40,9 +40,9 @@ public class Playlist : MonoBehaviour
     {
         if(currentVideoIndex==8)
         {
-            Leaderboard.SetActive(true);
+            //Leaderboard.SetActive(true);
             whoAmI.StopGame();
-            return;
+            //return;
         }
         if (!Playing) return;
         //if the frame is the last frame of the video
@@ -116,8 +116,8 @@ public class Playlist : MonoBehaviour
     }
 
 
-    public void SetIndex(int value)
+    public void SetIndex(string value)
     {
-        currentVideoIndex = value;
+        currentVideoIndex = int.Parse(value);
     }
 }
