@@ -9,4 +9,5 @@ public class BaseVideo : ScriptableObject
     public VideoClip VideoClip;
     public int MaxPoints = 1000;
     public double maxSeconds = 120;
+    public bool skip = false;
 }

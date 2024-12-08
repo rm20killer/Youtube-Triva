@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cactee
   m_EditorClassIdentifier: 
   rightAnswer: cactee
-  VideoClip: {fileID: 32900000, guid: d09225b74a3afbe409a3016f0a08f2f7, type: 3}
+  VideoClip: {fileID: 32900000, guid: 7cd6b0d589463834db19b489540f5494, type: 3}
   MaxPoints: 1000
-  maxSeconds: 120
+  maxSeconds: 60
+  skip: 1

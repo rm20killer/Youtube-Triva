@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
@@ -16,26 +17,47 @@ public class Playlist : MonoBehaviour
     public GameObject Leaderboard;
     public GameObject VideoGameObject;
     public bool Playing = false;
+
+    public GameObject StartUp;
+    public int[] skip;
     private void Start()
     {
-        // StartFirstGame();
+        //StartFirstGame();
     }
 
     public void StartFirstGame()
     {
+        VideoGameObject.SetActive(true);
         videoPlayer.clip = video[currentVideoIndex].VideoClip;
         whoAmI.StartGame(video[currentVideoIndex].rightAnswer, video[currentVideoIndex].MaxPoints,
             video[currentVideoIndex].maxSeconds);
         videoPlayer.Play();
+        Playing = true;
         Debug.Log((long)videoPlayer.clip.frameCount - 1);
+        CloseMenu();
     }
     private void Update()
     {
+        if(currentVideoIndex==8)
+        {
+            Leaderboard.SetActive(true);
+            whoAmI.StopGame();
+            return;
+        }
         if (!Playing) return;
         //if the frame is the last frame of the video
+        //Debug.Log(videoPlayer.frame);
         if (videoPlayer.frame == (long)videoPlayer.clip.frameCount - 1)
         {
-            Openleaderboard();
+   
+            if (!video[currentVideoIndex].skip)
+            {
+                Openleaderboard();
+            }
+            else
+            {
+                PlayNextVideo();
+            }
         }
         // Debug.Log(videoPlayer.frame); 1515
         
@@ -72,6 +94,7 @@ public class Playlist : MonoBehaviour
             VideoGameObject.SetActive(false);
             whoAmI.StopGame();
             Playing = false;
+            Debug.Log("Game finished");
         }
     }
     /// <summary>
@@ -82,9 +105,19 @@ public class Playlist : MonoBehaviour
     {
         playedvideo.Add(currentVideoIndex);
         currentVideoIndex++;
-        return currentVideoIndex >= video.Length;
+        Debug.Log(currentVideoIndex);
+        videoPlayer.clip = video[currentVideoIndex].VideoClip;
+        return currentVideoIndex <= video.Length;
     }
     
-    
-    
+    public void CloseMenu()
+    {
+        StartUp.SetActive(false);
+    }
+
+
+    public void SetIndex(int value)
+    {
+        currentVideoIndex = value;
+    }
 }
